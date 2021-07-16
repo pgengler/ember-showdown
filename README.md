@@ -130,11 +130,11 @@ export default {
 * `ember server`
 * Visit your app at http://localhost:4200.
 
-## Running Tests
+Installation
+------------------------------------------------------------------------------
 
 * `ember test`
 * `ember test --server`
 
-## Building
 
 * `ember build`
