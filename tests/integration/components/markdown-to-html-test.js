@@ -1,14 +1,19 @@
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import { moduleForComponent, test } from 'ember-qunit';
 
-moduleForComponent('markdown-to-html', 'Integration | Component | markdown to html', {
-  integration: true
-});
+module('Integration | Component | markdown to html', function (hooks) {
+  setupRenderingTest(hooks);
 
-test('positional parameter', function(assert) {
-  assert.expect(1);
+  test('renders @markdown as markdown', async function (assert) {
+    assert.expect(1);
 
-  this.set('markdown', '*hello world*');
-  this.render(hbs`{{markdown-to-html markdown}}`);
-  assert.equal(this.$('> *').html().trim(), '<p><em>hello world</em></p>');
+    await render(hbs`
+      <div id="rendered">
+        <MarkdownToHtml @markdown="*hello world*" />
+      </div>
+    `);
+    assert.dom('#rendered p em').hasText('hello world');
+  });
 });

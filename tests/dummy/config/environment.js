@@ -17,7 +17,7 @@ module.exports = function (environment) {
       },
     },
     EXTEND_PROTOTYPES: {
-      Date: false
+      Date: false,
     },
     APP: {
       // Here you can pass flags/options to your application instance

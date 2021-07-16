@@ -1,3 +1,4 @@
+import { set } from '@ember/object';
 import showdown from 'showdown';
 import Component from '@ember/component';
 import { htmlSafe } from '@ember/string';
@@ -14,7 +15,7 @@ const ShowdownComponent = Component.extend({
 
   _globalOptions: null,
 
-  defaultOptionKeys: computed(function() {
+  defaultOptionKeys: computed(function () {
     return Object.keys(showdown.getDefaultOptions());
   }).readOnly(),
 
@@ -23,7 +24,7 @@ const ShowdownComponent = Component.extend({
     const owner = getOwner(this);
 
     if (!this.extensions) {
-      this.extensions = [];
+      set(this, 'extensions', []);
     }
 
     if (owner && owner.hasRegistration(CONFIG_LOOKUP)) {
@@ -33,11 +34,9 @@ const ShowdownComponent = Component.extend({
     }
   },
 
-  html: computed('markdown', 'converter', function() {
-    let showdownOptions = this.getShowdownProperties(
-      get(this, 'defaultOptionKeys')
-    );
-    let converter = get(this, 'converter');
+  html: computed('converter', 'defaultOptionKeys', 'markdown', function () {
+    let showdownOptions = this.getShowdownProperties(this.defaultOptionKeys);
+    let converter = this.converter;
 
     for (let option in showdownOptions) {
       if (
@@ -48,11 +47,11 @@ const ShowdownComponent = Component.extend({
       }
     }
 
-    return htmlSafe(converter.makeHtml(get(this, 'markdown')));
+    return htmlSafe(converter.makeHtml(this.markdown));
   }).readOnly(),
 
-  converter: computed('extensions', function() {
-    let extensions = get(this, 'extensions');
+  converter: computed('extensions', function () {
+    let extensions = this.extensions;
 
     if (typeof extensions === 'string') {
       extensions = extensions.split(' ');
@@ -73,11 +72,11 @@ const ShowdownComponent = Component.extend({
 
       return accumulator;
     }, {});
-  }
+  },
 });
 
 ShowdownComponent.reopenClass({
-  positionalParams: ['markdown']
+  positionalParams: ['markdown'],
 });
 
 export default ShowdownComponent;
