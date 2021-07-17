@@ -39,7 +39,7 @@ You can use [configuration settings from Showdown][showdown-config] via the `@sh
 ```handlebars
 <MarkdownToHtml
   @markdown={{@postContent}}
-  @showdownOption={{hash
+  @showdownOptions={{hash
     strikethrough=true
     literalMidWordUnderscores=true
     simplifiedAutoLink=true
