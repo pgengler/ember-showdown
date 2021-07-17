@@ -85,6 +85,6 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "demoURL": "https://gcollazo.github.io/ember-cli-showdown/"
+    "demoURL": "https://pgengler.github.io/ember-showdown/"
   }
 }
