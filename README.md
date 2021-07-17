@@ -9,17 +9,17 @@ This addon provides a component that transforms [Markdown](http://en.wikipedia.o
 
 ## Requirements
 
-* ember-cli >= 2.16.0 (if on older version of ember-cli, target ember-cli-showdown@3)
+* ember-cli >= 3.27.0 (it may work with older versions but this hasn't been tested)
 
 ## Usage
-From within your Ember CLI application, run the following:
+From within your Ember application, run the following:
 
 - `ember install ember-cli-showdown`
 
 Passing a markdown string inline:
 
 ```handlebars
-{{markdown-to-html "#Markdown is cool [link](http://emberjs.com)"}}
+<MarkdownToHtml @markdown="#Markdown is cool [link](http://emberjs.com)" />
 ```
 
 ```html
@@ -30,19 +30,22 @@ Passing a markdown string inline:
 You can also pass a bound value:
 
 ```handlebars
-{{markdown-to-html postContent}}
+<MarkdownToHtml @markdown={{@postContent}} />
 ```
 
 ### Showdown Options
 
-You can use [configuration settings from Showdown][showdown-config]:
+You can use [configuration settings from Showdown][showdown-config] via the `@showdownOptions` argument:
 
 ```handlebars
-{{markdown-to-html
-  markdown=postContent
-  strikethrough=true
-  literalMidWordUnderscores=true
-  simplifiedAutoLink=true}}
+<MarkdownToHtml
+  @markdown={{@postContent}}
+  @showdownOption={{hash
+    strikethrough=true
+    literalMidWordUnderscores=true
+    simplifiedAutoLink=true
+  }}
+/>
 ```
 
 [showdown-config]: https://github.com/showdownjs/showdown#valid-options
@@ -57,7 +60,7 @@ An example where you always want to auto link:
 ```js
 // config/environment.js
 module.exports = function(environment) {
-  var ENV = {
+  let ENV = {
     showdown: {
       simplifiedAutoLink: true
     }
@@ -73,18 +76,20 @@ You can load [Showdown Extensions](https://github.com/showdownjs/showdown/wiki/e
 "extensions" property when initializing your component:
 
 ```handlebars
-{{markdown-to-html
-  markdown=postContent
-  extensions=myExtensionList}}
+<MarkdownToHtml
+  @markdown={{@postContent}}
+  @extensions={{this.myExtensionList}}
+/>
 ```
 
 ```handlebars
-{{markdown-to-html
-  markdown=postContent
-  extensions='foo bar baz'}}
+<MarkdownToHtml
+  @markdown={{@postContent}}
+  @extensions="foo bar baz"
+/>
 ```
 
-(`myExtensionList` can be an array of strings or a space separated string)
+(the extension list can be an array of strings or a space separated string)
 
 Note that you'll have to register your extensions with Showdown first.
 For example, in an initializer:
@@ -94,7 +99,7 @@ For example, in an initializer:
 import showdown from 'showdown';
 
 export function initialize() {
-  showdown.extension("myExtensionName", function() {
+  showdown.extension('myExtensionName', function() {
     return [{
       type: 'html',
       regex: '<blockquote>',
@@ -130,11 +135,11 @@ export default {
 * `ember server`
 * Visit your app at http://localhost:4200.
 
-Installation
-------------------------------------------------------------------------------
+## Running tests
 
 * `ember test`
 * `ember test --server`
 
+## Building
 
 * `ember build`
