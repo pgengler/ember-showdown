@@ -1,1 +1,1 @@
-export { default } from 'ember-cli-showdown/templates/components/markdown-to-html';
+export { default } from 'ember-showdown/templates/components/markdown-to-html';

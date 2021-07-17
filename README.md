@@ -1,9 +1,8 @@
-# Ember CLI Showdown
-
-[![Build Status](https://travis-ci.org/gcollazo/ember-cli-showdown.svg?branch=master)](https://travis-ci.org/gcollazo/ember-cli-showdown)
-[![Ember Observer Score](http://emberobserver.com/badges/ember-cli-showdown.svg)](http://emberobserver.com/addons/ember-cli-showdown)
+# ember-showdown
 
 This addon provides a component that transforms [Markdown](http://en.wikipedia.org/wiki/Markdown) into valid HTML.
+
+It is a fork of [ember-cli-showdown](https://github.com/gcollazo/ember-cli-showdown), updated to work with newer versions of Ember.
 
 * Fastboot compatible
 
@@ -14,7 +13,7 @@ This addon provides a component that transforms [Markdown](http://en.wikipedia.o
 ## Usage
 From within your Ember application, run the following:
 
-- `ember install ember-cli-showdown`
+- `ember install ember-showdown`
 
 Passing a markdown string inline:
 
@@ -116,23 +115,18 @@ export default {
 
 [showdown-extensions]: https://github.com/showdownjs/showdown/wiki/extensions
 
-## 3.x to 4.3 migration
-* Global `showdown` is no longer supported.  Must be imported via `import showdown from 'showdown'`
-* Remove any use of `FastBoot.require('require')` with `import showdown from 'showdown'`
-
 ## Dependencies
 * [Showdown](https://github.com/showdownjs/showdown)
 
 ## Development
 
-* `git clone https://github.com/gcollazo/ember-cli-showdown.git`
-* `cd ember-cli-showdown`
-* `npm install`
-* `bower install`
+* `git clone https://github.com/pgengler/ember-showdown.git`
+* `cd ember-showdown`
+* `yarn install`
 
 ## Previewing
 
-* `ember server`
+* `ember serve`
 * Visit your app at http://localhost:4200.
 
 ## Running tests

@@ -2,8 +2,8 @@
 
 ## Installation
 
-* `git clone <repository-url>`
-* `cd ember-cli-showdown`
+* `git clone https://github.com/pgengler/ember-showdown.git`
+* `cd ember-showdown`
 * `yarn install`
 
 ## Linting

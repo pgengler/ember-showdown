@@ -1,6 +1,6 @@
 {
-  "name": "ember-cli-showdown",
-  "version": "4.5.0",
+  "name": "ember-showdown",
+  "version": "1.0.0-beta.0",
   "description": "Ember component to render markdown into HTML.",
   "keywords": [
     "ember-addon",
@@ -15,7 +15,7 @@
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "https://github.com/gcollazo/ember-cli-showdown",
+  "repository": "https://github.com/pgengler/ember-showdown",
   "scripts": {
     "build": "ember build --environment=production",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:!(fix)\"",
@@ -36,7 +36,6 @@
     "ember-cli-babel": "^7.26.6",
     "ember-cli-htmlbars": "^5.7.1",
     "ember-cli-import-polyfill": "^0.2.0",
-    "ember-cli-version-checker": "^2.1.2",
     "resolve": "^1.8.1",
     "semver": "^5.5.0",
     "showdown": "^1.8.6"
