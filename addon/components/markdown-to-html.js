@@ -1,7 +1,7 @@
 import Component from '@glimmer/component';
-import showdown from 'showdown';
-import { htmlSafe } from '@ember/string';
 import { getOwner } from '@ember/application';
+import { htmlSafe } from '@ember/template';
+import showdown from 'showdown';
 
 const CONFIG_LOOKUP = 'config:environment';
 
