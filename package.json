@@ -1,6 +1,6 @@
 {
   "name": "ember-showdown",
-  "version": "1.0.0-beta.0",
+  "version": "1.0.0-beta.1",
   "description": "Ember component to render markdown into HTML.",
   "keywords": [
     "ember-addon",
