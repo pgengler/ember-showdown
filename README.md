@@ -2,7 +2,7 @@
 
 This addon provides a component that transforms [Markdown](http://en.wikipedia.org/wiki/Markdown) into valid HTML.
 
-It is a fork of [ember-cli-showdown](https://github.com/gcollazo/ember-cli-showdown), updated to work with newer versions of Ember.
+It is a fork of [ember-cli-showdown](https://github.com/gcollazo/ember-cli-showdown), updated to use modern Ember features and to be deprecation-free.
 
 * Fastboot compatible
 
@@ -51,8 +51,7 @@ You can use [configuration settings from Showdown][showdown-config] via the `@sh
 
 #### Global Showdown Options
 
-Global options are supported as of 2.11.x.  This lets you define options that will be used
-for showdown options that were not provided as an attribute.
+Global options let you define options that will be used for all conversions, without having to include them in `@showdownOptions` each time. (`@showdownOptions` can be used to override global options.)
 
 An example where you always want to auto link:
 
