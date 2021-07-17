@@ -1,72 +1,59 @@
+import Component from '@glimmer/component';
 import showdown from 'showdown';
-import Component from '@ember/component';
 import { htmlSafe } from '@ember/string';
-import { get, computed } from '@ember/object';
 import { getOwner } from '@ember/application';
-import layout from '../templates/components/markdown-to-html';
 
 const CONFIG_LOOKUP = 'config:environment';
 
-const ShowdownComponent = Component.extend({
-  layout,
-  markdown: '',
-  extensions: null,
+export default class MarkdownToHtmlComponent extends Component {
+  globalOptions = null;
 
-  _globalOptions: null,
+  constructor() {
+    super(...arguments);
 
-  defaultOptionKeys: computed(function() {
-    return Object.keys(showdown.getDefaultOptions());
-  }).readOnly(),
+    this.defaultOptionKeys = Object.keys(showdown.getDefaultOptions());
 
-  init() {
-    this._super(...arguments);
     const owner = getOwner(this);
 
-    if (!this.extensions) {
-      this.extensions = [];
-    }
-
     if (owner && owner.hasRegistration(CONFIG_LOOKUP)) {
-      this._globalOptions = (
+      this.globalOptions = (
         owner.resolveRegistration(CONFIG_LOOKUP) || {}
       ).showdown;
     }
-  },
+  }
 
-  html: computed('markdown', 'converter', function() {
-    let showdownOptions = this.getShowdownProperties(
-      get(this, 'defaultOptionKeys')
-    );
-    let converter = get(this, 'converter');
+  get html() {
+    let showdownOptions = this.getShowdownProperties(this.defaultOptionKeys);
+    let converter = this.converter;
 
     for (let option in showdownOptions) {
       if (
-        showdownOptions.hasOwnProperty(option) &&
+        Object.prototype.hasOwnProperty.call(showdownOptions, option) &&
         typeof showdownOptions[option] !== 'undefined'
       ) {
         converter.setOption(option, showdownOptions[option]);
       }
     }
 
-    return htmlSafe(converter.makeHtml(get(this, 'markdown')));
-  }).readOnly(),
+    return htmlSafe(converter.makeHtml(this.args.markdown));
+  }
 
-  converter: computed('extensions', function() {
-    let extensions = get(this, 'extensions');
+  get converter() {
+    let extensions = this.args.extensions ?? [];
 
     if (typeof extensions === 'string') {
       extensions = extensions.split(' ');
     }
 
     return new showdown.Converter({ extensions });
-  }),
+  }
 
   getShowdownProperties(keyNames) {
     return keyNames.reduce((accumulator, keyName) => {
-      let value = get(this, keyName);
+      let value = (this.args.showdownOptions ?? {})[keyName];
 
-      if (value === undefined && this._globalOptions) {
-        value = get(this._globalOptions, keyName);
+      if (value === undefined && this.globalOptions) {
+        value = this.globalOptions[keyName];
       }
 
       accumulator[keyName] = value;
@@ -74,10 +61,4 @@ const ShowdownComponent = Component.extend({
       return accumulator;
     }, {});
   }
-});
-
-ShowdownComponent.reopenClass({
-  positionalParams: ['markdown']
-});
-
-export default ShowdownComponent;
+}
