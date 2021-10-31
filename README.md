@@ -114,6 +114,24 @@ export default {
 
 [showdown-extensions]: https://github.com/showdownjs/showdown/wiki/extensions
 
+## Differences from ember-cli-showdown
+### Positional parameters not supported
+This addon does not accept positional parameters to the `<MarkdownToHtml/>` component; you need to pass the markdown content via the `@markdown` argument.
+
+### Showdown options are set via `@showdownOptions` argument instead of top-level arguments
+Any options that should be passed to Showdown are set as properties of an object passed as `@showdownOptions`, instead of being defined as top-level arguments to `<MarkdownToHtml/>`.
+
+For example, to enable auto-linking, you would use:
+```js
+<MarkdownToHtml @markdown={{this.markdownContent}} @showdownOptions={{hash simplifiedAutoLink=true}} />
+```
+
+and _not_ as:
+```js
+<MarkdownToHtml @markdown={{this.markdownContent}} @simplifiedAutoLink={{true}} />
+```
+as you would with ember-cli-showdown.
+
 ## Dependencies
 * [Showdown](https://github.com/showdownjs/showdown)
 
