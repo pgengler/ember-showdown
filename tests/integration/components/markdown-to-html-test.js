@@ -18,7 +18,7 @@ module('Integration | Component | markdown to html', function (hooks) {
     `);
 
     let expectedHtml = '<h2 id="helloworld">Hello, <a href="#">world</a></h2>';
-    assert.equal(find('#rendered').innerHTML.trim(), expectedHtml);
+    assert.strictEqual(find('#rendered').innerHTML.trim(), expectedHtml);
   });
 
   test('it inserts <br> tag', async function (assert) {
@@ -57,7 +57,7 @@ module('Integration | Component | markdown to html', function (hooks) {
     let expectedHtml =
       '<h3 id="title">title</h3>\n<p>I <del>dislike</del> enjoy visiting <a href="http://www.google.com">http://www.google.com</a></p>';
 
-    assert.equal(find('#rendered').innerHTML.trim(), expectedHtml);
+    assert.strictEqual(find('#rendered').innerHTML.trim(), expectedHtml);
   });
 
   test('supports setting showdown options merged with global options', async function (assert) {
@@ -84,7 +84,7 @@ module('Integration | Component | markdown to html', function (hooks) {
     let expectedHtml =
       '<h3 id="title">title</h3>\n<p>I <del>dislike</del> enjoy visiting <a href="http://www.google.com">http://www.google.com</a></p>';
 
-    assert.equal(find('#rendered').innerHTML.trim(), expectedHtml);
+    assert.strictEqual(find('#rendered').innerHTML.trim(), expectedHtml);
   });
 
   test('does not reset default showdown options with undefined', async function (assert) {
@@ -100,7 +100,7 @@ module('Integration | Component | markdown to html', function (hooks) {
     `);
 
     let expectedHtml = '<p><del>dislike</del></p>';
-    assert.equal(find('#rendered').innerHTML.trim(), expectedHtml);
+    assert.strictEqual(find('#rendered').innerHTML.trim(), expectedHtml);
 
     showdown.setOption('strikethrough', originalStrikeThroughValue);
   });
@@ -142,7 +142,7 @@ module('Integration | Component | markdown to html', function (hooks) {
     `);
 
     let expectedHtml = '<p>this is an ember showdown!</p>';
-    assert.equal(find('#rendered').innerHTML.trim(), expectedHtml);
+    assert.strictEqual(find('#rendered').innerHTML.trim(), expectedHtml);
   });
 
   test('it does not munge code fences', async function (assert) {
@@ -160,6 +160,6 @@ module('Integration | Component | markdown to html', function (hooks) {
 
     let expectedHtml =
       '<pre><code class="html language-html">&lt;strong&gt;hello&lt;/strong&gt;\n&lt;em&gt;world&lt;/em&gt;\n</code></pre>';
-    assert.equal(find('#rendered').innerHTML.trim(), expectedHtml);
+    assert.strictEqual(find('#rendered').innerHTML.trim(), expectedHtml);
   });
 });
