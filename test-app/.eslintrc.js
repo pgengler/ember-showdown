@@ -29,10 +29,17 @@ module.exports = {
         '.template-lintrc.js',
         'ember-cli-build.js',
         'index.js',
+        'testem.js',
         'blueprints/*/index.js',
         'config/**/*.js',
+        'tests/dummy/config/**/*.js',
       ],
-      excludedFiles: ['addon/**', 'app/**'],
+      excludedFiles: [
+        'addon/**',
+        'addon-test-support/**',
+        'app/**',
+        'tests/dummy/app/**',
+      ],
       parserOptions: {
         sourceType: 'script',
       },
@@ -42,6 +49,11 @@ module.exports = {
       },
       plugins: ['n'],
       extends: ['plugin:n/recommended'],
+    },
+    {
+      // Test files:
+      files: ['tests/**/*-test.{js,ts}'],
+      extends: ['plugin:qunit/recommended'],
     },
   ],
 };

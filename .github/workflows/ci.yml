@@ -18,8 +18,16 @@ jobs:
         with:
           node-version: 12
 
-      - run: yarn install --no-lockfile
+      - run: pnpm install
 
-      - run: yarn lint
+      - name: Lint Addon
+        run: pnpm lint
+        working-directory: addon
 
-      - run: yarn test
+      - name: Lint Test App
+        run: pnpm lint
+        working-directory: test-app
+
+      - name: Test
+        run: pnpm test:ember
+        working-directory: test-app
