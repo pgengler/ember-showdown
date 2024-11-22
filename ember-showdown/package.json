@@ -69,7 +69,9 @@
     "version": 2,
     "type": "addon",
     "main": "addon-main.cjs",
-    "app-js": {},
+    "app-js": {
+      "./components/markdown-to-html.js": "./dist/_app_/components/markdown-to-html.js"
+    },
     "demoURL": "https://pgengler.github.io/ember-showdown/"
   }
 }
