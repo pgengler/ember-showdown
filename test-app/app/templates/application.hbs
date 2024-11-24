@@ -1,0 +1,14 @@
+<h2 id="title">ember-showdown demo</h2>
+
+<label for="markdown">Markdown:</label>
+<textarea id="markdown" {{on "input" this.setInput}}>
+  {{~this.editableText~}}
+</textarea>
+{{!-- <Textarea @value={{this.editableText}} id="markdown" /> --}}
+
+Rendered:
+<MarkdownToHtml @markdown={{this.editableText}} />
+
+<MarkdownToHtml @markdown='#Markdown is cool [link](https://google.com)' />
+
+{{outlet}}
