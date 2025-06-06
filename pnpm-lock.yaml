@@ -234,6 +234,9 @@ importers:
       qunit-dom:
         specifier: ^3.4.0
         version: 3.4.0
+      showdown:
+        specifier: ^2.1.0
+        version: 2.1.0
       stylelint:
         specifier: ^16.19.1
         version: 16.20.0(typescript@5.8.3)
