@@ -4,7 +4,6 @@
 <textarea id="markdown" {{on "input" this.setInput}}>
   {{~this.editableText~}}
 </textarea>
-{{!-- <Textarea @value={{this.editableText}} id="markdown" /> --}}
 
 Rendered:
 <MarkdownToHtml @markdown={{this.editableText}} />
