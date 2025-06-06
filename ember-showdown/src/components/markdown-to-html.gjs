@@ -61,4 +61,8 @@ export default class MarkdownToHtmlComponent extends Component {
       return accumulator;
     }, {});
   }
+
+  <template>
+    {{{this.html}}}
+  </template>
 }
