@@ -16,7 +16,7 @@ module('Integration | Component | markdown to html', function (hooks) {
         <div id="rendered">
           <MarkdownToHtml @markdown="##Hello, [world](#)" />
         </div>
-      </template>
+      </template>,
     );
 
     let expectedHtml = '<h2 id="helloworld">Hello, <a href="#">world</a></h2>';
@@ -30,7 +30,7 @@ module('Integration | Component | markdown to html', function (hooks) {
         <div id="rendered">
           <MarkdownToHtml @markdown={{markdown}} />
         </div>
-      </template>
+      </template>,
     );
 
     let expectedHtmlRegex = /<p>foo ?<br( \/)?>\nbar<\/p>/;
@@ -45,14 +45,10 @@ module('Integration | Component | markdown to html', function (hooks) {
         <div id="rendered">
           <MarkdownToHtml
             @markdown={{markdown}}
-            @showdownOptions={{hash
-              simplifiedAutoLink=true
-              headerLevelStart=3
-              strikethrough=true
-            }}
+            @showdownOptions={{hash simplifiedAutoLink=true headerLevelStart=3 strikethrough=true}}
           />
         </div>
-      </template>
+      </template>,
     );
 
     let expectedHtml =
@@ -68,19 +64,13 @@ module('Integration | Component | markdown to html', function (hooks) {
       },
     });
 
-const markdown = '# title\nI ~~dislike~~ enjoy visiting http://www.google.com';
+    const markdown = '# title\nI ~~dislike~~ enjoy visiting http://www.google.com';
     await render(
       <template>
         <div id="rendered">
-          <MarkdownToHtml
-            @markdown={{markdown}}
-            @showdownOptions={{hash
-              headerLevelStart=3
-              strikethrough=true
-            }}
-          />
+          <MarkdownToHtml @markdown={{markdown}} @showdownOptions={{hash headerLevelStart=3 strikethrough=true}} />
         </div>
-      </template>
+      </template>,
     );
 
     let expectedHtml =
@@ -99,7 +89,7 @@ const markdown = '# title\nI ~~dislike~~ enjoy visiting http://www.google.com';
         <div id="rendered">
           <MarkdownToHtml @markdown={{markdown}} />
         </div>
-      </template>
+      </template>,
     );
 
     let expectedHtml = '<p><del>dislike</del></p>';
@@ -136,12 +126,9 @@ const markdown = '# title\nI ~~dislike~~ enjoy visiting http://www.google.com';
     await render(
       <template>
         <div id="rendered">
-          <MarkdownToHtml
-            @markdown="this is a showdown"
-            @extensions="demo excited"
-          />
+          <MarkdownToHtml @markdown="this is a showdown" @extensions="demo excited" />
         </div>
-      </template>
+      </template>,
     );
 
     let expectedHtml = '<p>this is an ember showdown!</p>';
@@ -153,12 +140,9 @@ const markdown = '# title\nI ~~dislike~~ enjoy visiting http://www.google.com';
     await render(
       <template>
         <div id="rendered">
-          <MarkdownToHtml
-            @markdown={{markdown}}
-            @showdownOptions={{hash ghCodeBlocks=true}}
-          />
+          <MarkdownToHtml @markdown={{markdown}} @showdownOptions={{hash ghCodeBlocks=true}} />
         </div>
-      </template>
+      </template>,
     );
 
     let expectedHtml =

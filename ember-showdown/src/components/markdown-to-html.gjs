@@ -62,7 +62,5 @@ export default class MarkdownToHtmlComponent extends Component {
     }, {});
   }
 
-  <template>
-    {{{this.html}}}
-  </template>
+  <template>{{this.html}}</template>
 }
