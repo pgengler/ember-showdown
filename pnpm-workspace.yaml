@@ -1,0 +1,3 @@
+packages:
+  - 'ember-showdown'
+  - 'test-app'
